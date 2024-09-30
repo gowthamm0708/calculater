@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comet Effect on Mouse Move</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+            cursor: none; /* Hides the default mouse cursor */
+        }
+
+        .comet {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5);
+            pointer-events: none; /* Prevents interacting with the comet */
+            animation: fade-out 0.5s forwards;
+        }
+
+        @keyframes fade-out {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        document.addEventListener('mousemove', createComet);
+
+        function createComet(e) {
+            const comet = document.createElement('div');
+            comet.classList.add('comet');
+            
+            // Set the comet's position relative to the mouse
+            comet.style.left = `${e.clientX - 5}px`; // Centers it around the mouse
+            comet.style.top = `${e.clientY - 5}px`;
+
+            // Append the comet to the body
+            document.body.appendChild(comet);
+
+            // Remove the comet after the animation finishes
+            setTimeout(() => {
+                comet.remove();
+            }, 500); // 500ms matches the animation duration
+        }
+    </script>
+
+</body>
+</html>
