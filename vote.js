@@ -1,45 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import {useState} from 'react';
-function App() {
-  const [people,setPeople] = useState([
-    {
-      "name":"zero",
-      "votes":0
-    },
-    {
-      "name":"autumn",
-      "votes":0
-    }
-  ])
-  
-  const voting = (id)=> {
-    var newPeople = Object.assign([],people);
-    newPeople[id].votes+=1
-    setPeople(newPeople)
-  
-  }
-  
-    return (
-     <>
-     <div>hey</div>
-     {
-       people.map((data,index) =>
-       {
-         return(
-           <>
-          <div key={index}>
-            name: {data.name}
-          vote: {data.votes}
-          
-          <button onClick={() => voting(index)}>
-  vote</button>
-  </div>
-          </>
-         )  
-       })
-     }   
-     </>
-    );
-  }
-  export default App;
+import React,{useState} from'react'
+
+function Voteing(){
+  const [voteCount ,setVoteCount] = useState(0);
+  const handleVote = () => {
+    setVoteCount(voteCount + 1);
+  };
+  return (
+<div>
+<h1>College vote</h1>
+  <button onClick = {handleVote}>Vote</button>
+  <p>vote count {voteCount}</p>
+
+
+</div>
+  );
+}
+export default Voteing;
